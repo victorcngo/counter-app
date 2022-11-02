@@ -4,7 +4,6 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CounterState {
   value: number;
-  status: "idle" | "loading" | "failed";
   isPrime: boolean;
 }
 
@@ -15,7 +14,6 @@ export interface PayloadActionProps {
 
 const initialState: CounterState = {
   value: 0,
-  status: "idle",
   isPrime: false,
 };
 
@@ -26,10 +24,14 @@ export const counterSlice = createSlice({
     increment: (state, action: PayloadAction<PayloadActionProps>) => {
       state.value += action.payload.number;
       state.isPrime = action.payload.isPrime;
+      /* Debug */
+      console.log('+ ' + action.payload.number + ", " + action.payload.isPrime);
     },
     decrement: (state, action: PayloadAction<PayloadActionProps>) => {
       state.value -= action.payload.number;
       state.isPrime = action.payload.isPrime;
+      /* Debug */
+      console.log('- ' + action.payload.number + ", " + action.payload.isPrime);
     },
   },
 });
