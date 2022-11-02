@@ -18,7 +18,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={() => dispatch(decrement(Math.floor(Math.random() * 10) + 1))}
         >
           -
         </button>
@@ -26,7 +26,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={() => dispatch(increment(Math.floor(Math.random() * 10) + 1))}
         >
           +
         </button>

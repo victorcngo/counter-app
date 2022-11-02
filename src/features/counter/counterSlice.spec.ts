@@ -17,12 +17,12 @@ describe('counter reducer', () => {
   });
 
   it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
+    const actual = counterReducer(initialState, increment(Math.floor(Math.random() * 10) + 1));
     expect(actual.value).toEqual(4);
   });
 
   it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
+    const actual = counterReducer(initialState, decrement(Math.floor(Math.random() * 10) + 1));
     expect(actual.value).toEqual(2);
   });
 
