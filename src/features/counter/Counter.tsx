@@ -1,17 +1,16 @@
 import React from "react";
-
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   decrement,
   increment,
   selectCount,
-  selectisPrime,
+  selectIsPrime,
 } from "./counterSlice";
 import styles from "./Counter.module.css";
 
 export function Counter() {
   const count = useAppSelector(selectCount);
-  const isPrime = useAppSelector(selectisPrime);
+  const isPrime = useAppSelector(selectIsPrime);
   const dispatch = useAppDispatch();
 
   return (
@@ -21,7 +20,12 @@ export function Counter() {
           className={styles.button}
           aria-label="Decrement value"
           onClick={() =>
-            dispatch(decrement({ number: Math.floor(Math.random() * 10) + 1 }))
+            dispatch(
+              decrement({
+                number: Math.floor(Math.random() * 10) + 1,
+                isPrime: false,
+              })
+            )
           }
         >
           -
@@ -31,7 +35,12 @@ export function Counter() {
           className={styles.button}
           aria-label="Increment value"
           onClick={() =>
-            dispatch(increment({ number: Math.floor(Math.random() * 10) + 1 }))
+            dispatch(
+              increment({
+                number: Math.floor(Math.random() * 10) + 1,
+                isPrime: false,
+              })
+            )
           }
         >
           +

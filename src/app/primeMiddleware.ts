@@ -1,4 +1,6 @@
-import { Dispatch, Middleware, MiddlewareAPI } from "redux";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { PayloadActionProps } from "../features/counter/counterSlice";
+import { Dispatch, MiddlewareAPI } from "redux";
 
 function isPrime(n: number) {
   if (n < 2) return false;
@@ -7,7 +9,7 @@ function isPrime(n: number) {
 }
 
 export const primeMiddleware =
-  (_: MiddlewareAPI) => (next: Dispatch) => (action: any) => {
+  (_: MiddlewareAPI) => (next: Dispatch) => (action: PayloadAction<PayloadActionProps>) => {
     action.payload.isPrime = isPrime(action.payload.number);
     return next(action);
   };
