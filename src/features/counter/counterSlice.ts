@@ -5,36 +5,33 @@ import { PayloadAction } from '@reduxjs/toolkit';
 export interface CounterState {
   value: number;
   status: 'idle' | 'loading' | 'failed';
+  isPrime: boolean;
 }
 
 const initialState: CounterState = {
   value: 0,
   status: 'idle',
+  isPrime: false
 };
 
 export const counterSlice = createSlice({
   name: 'counter',
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    increment: (state, action: PayloadAction<any>) => {
+      state.value += action.payload.number;
+      state.isPrime = action.payload.isPrime;
     },
-    decrement: (state, action: PayloadAction<number>) => {
-      state.value -= action.payload;
+    decrement: (state, action: PayloadAction<any>) => {
+      state.value -= action.payload.number;
+      state.isPrime = action.payload.isPrime;
     },
   },
 });
 
 export const { increment, decrement } = counterSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectCount = (state: RootState) => state.counter.value;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-
+export const selectisPrime = (state: RootState) => state.counter.isPrime;
 
 export default counterSlice.reducer;

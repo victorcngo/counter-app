@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   decrement,
   increment,
   selectCount,
-} from './counterSlice';
-import styles from './Counter.module.css';
+  selectisPrime,
+} from "./counterSlice";
+import styles from "./Counter.module.css";
 
 export function Counter() {
   const count = useAppSelector(selectCount);
+  const isPrime = useAppSelector(selectisPrime);
   const dispatch = useAppDispatch();
 
   return (
@@ -18,7 +20,9 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement(Math.floor(Math.random() * 10) + 1))}
+          onClick={() =>
+            dispatch(decrement({ number: Math.floor(Math.random() * 10) + 1 }))
+          }
         >
           -
         </button>
@@ -26,11 +30,14 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment(Math.floor(Math.random() * 10) + 1))}
+          onClick={() =>
+            dispatch(increment({ number: Math.floor(Math.random() * 10) + 1 }))
+          }
         >
           +
         </button>
       </div>
+      <span>{isPrime && "*"}</span>
     </div>
   );
 }
